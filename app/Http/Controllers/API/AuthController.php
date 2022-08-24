@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Utils\ResponseUtil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -62,16 +63,41 @@ class AuthController extends Controller
         $userResponse = User::create($request);
 
         $token = $userResponse->createToken('auth_token')->plainTextToken;
-        $data = [
-            'id' => $userResponse->id,
-            'name' => $userResponse->name,
-            'phone' => $userResponse->email,
-            'role_id' => $userResponse->role_id,
-            'nip' => $userResponse->nip,
-            'access_token' => $token
-        ];
+        $userResponse['access_token'] = $token;
 
-        return ResponseUtil::success($data);
+        return ResponseUtil::success($userResponse);
+    }
+
+    public function login()
+
+    {
+
+        $request = $this->request;
+
+        if (!$request['phone']) {
+            return ResponseUtil::error('Phone tidak boleh kosong', 400);
+        }
+
+        if (!$request['password']) {
+            return ResponseUtil::error('password tidak boleh kosong', 400);
+        }
+
+        $request = $request->only(['phone', 'password']);
+
+        $user = User::where('phone', '=', trim($request['phone']))->first();
+        if (!$user) {
+            return ResponseUtil::error('Nomor tidak ditemukan', 400);
+        }
+
+
+        if (Auth::attempt($request, false)) {
+            $token = $user->createToken('auth_token')->plainTextToken;
+            $user['access_token'] = $token;
+           
+            return ResponseUtil::success($user);
+        }
+
+        return ResponseUtil::error('Password Salah', 400);
     }
 
 }

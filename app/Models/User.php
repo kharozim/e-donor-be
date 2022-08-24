@@ -26,6 +26,7 @@ class User extends Authenticatable
         'image',
         'age',
         'isPendonor',
+        'image',
         'history_donor_count',
     ];
 

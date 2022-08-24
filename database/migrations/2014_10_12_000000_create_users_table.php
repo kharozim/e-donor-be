@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('age');
             $table->string('blood_type');
             $table->integer('role_id')->comment('1 = user, 2 = admin');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('password');
             $table->boolean('isPendonor');
             $table->integer('hisory_donor_count')->default(0);
