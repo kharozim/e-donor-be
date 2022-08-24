@@ -93,11 +93,23 @@ class AuthController extends Controller
         if (Auth::attempt($request, false)) {
             $token = $user->createToken('auth_token')->plainTextToken;
             $user['access_token'] = $token;
-           
+
             return ResponseUtil::success($user);
         }
 
         return ResponseUtil::error('Password Salah', 400);
     }
 
+    public function setAdmin($userId)
+    {
+
+        $user = User::find($userId);
+
+        if (!$user) {
+            return ResponseUtil::error('User tidak ditemukan', 400);
+        }
+        $user->role_id = 2;
+        $user->save();
+        return ResponseUtil::success($user);
+    }
 }

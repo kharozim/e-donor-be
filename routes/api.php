@@ -28,7 +28,7 @@ Route::group(
     function () {
         Route::post('/login',[AuthController::class, 'login'] );
         Route::post('/register',[AuthController::class, 'register'] );
-        // Route::post('/set-admin/{userId}',[AuthController::class, 'setAdmin'] );
+        Route::post('/set-admin/{userId}',[AuthController::class, 'setAdmin'] );
         // Route::post('/request-reset',[AuthController::class, 'requestReset'] )->name('forgot password');
         // Route::post('/reset-password',[AuthController::class, 'reset'] )->name('reset password');
         
