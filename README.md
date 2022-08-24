@@ -36,3 +36,10 @@ body :
 }
 
 ```
+
+- Login
+
+```
+POST : http://localhost:8000/api/auth/set-admin/{user_id}
+
+```
