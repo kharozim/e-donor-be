@@ -56,9 +56,12 @@ class UserController extends Controller
             return ResponseUtil::error('Akses ditolak. Anda bukan admin!', 400);
         }
 
-        $result = User::find($userId);
+        $user = User::find($userId);
+        if (!$user) {
+            return ResponseUtil::error('User tidak ditemukan', 400);
+        }
 
-        return ResponseUtil::success($result);
+        return ResponseUtil::success($user);
     }
 
     public function update($userId)
