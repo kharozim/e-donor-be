@@ -35,4 +35,55 @@ class UserController extends Controller
         $user->update($request);
         return ResponseUtil::success($user);
     }
+
+    public function all()
+    {
+        $auth = Auth::user();
+        if ($auth->role_id != 2) {
+            return ResponseUtil::error('Akses ditolak. Anda bukan admin!', 400);
+        }
+
+        $result = User::get();
+
+        return ResponseUtil::success($result);
+    }
+
+    public function update($userId)
+    {
+        $auth = Auth::user();
+        $user = User::find($userId);
+
+        if ($auth->role_id != 2) {
+            return ResponseUtil::error('Akses ditolak. Anda bukan admin!', 400);
+        }
+
+        if (!$user) {
+            return ResponseUtil::error('User tidak ditemukan', 400);
+        }
+        $request = $this->request;
+        $request = $request->only(['name', 'phone', 'image', 'is_pendonor', 'age', 'blood_type', 'token_fcm']);
+
+        $user->update($request);
+        return ResponseUtil::success($user);
+    }
+
+    public function delete($userId)
+    {
+        $auth = Auth::user();
+        $user = User::find($userId);
+
+        if ($auth->role_id != 2) {
+            return ResponseUtil::error('Akses ditolak. Anda bukan admin!', 400);
+        }
+        if (!$user) {
+            return ResponseUtil::error('User tidak ditemukan', 400);
+        }
+
+        if ($user->id == $auth->id) {
+            return ResponseUtil::error('Tidak dapat menghapus diri sendiri', 403);
+        }
+
+        $user->delete();
+        return ResponseUtil::success("Berhasil hapus User");
+    }
 }

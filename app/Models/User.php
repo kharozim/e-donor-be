@@ -26,7 +26,7 @@ class User extends Authenticatable
         'role_id',
         'image',
         'age',
-        'isPendonor',
+        'is_pendonor',
         'image',
         'history_donor_count',
         'token_fcm'
@@ -50,7 +50,7 @@ class User extends Authenticatable
     protected $casts = [
         'age' => 'integer',
         'role_id' => 'integer',
-        'isPendonor' => 'boolean',
+        'is_pendonor' => 'boolean',
         'history_donor_count' => 'integer'
     ];
 }

@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('role_id')->comment('1 = user, 2 = admin');
             $table->string('image')->nullable();
             $table->string('password');
-            $table->boolean('isPendonor');
+            $table->boolean('is_pendonor');
             $table->integer('history_donor_count')->default(0);
             $table->string('token_fcm')->nullable();
             $table->rememberToken();

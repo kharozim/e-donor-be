@@ -27,12 +27,11 @@ Route::group(
         'as' => 'auth.',
     ],
     function () {
-        Route::post('/login',[AuthController::class, 'login'] );
-        Route::post('/register',[AuthController::class, 'register'] );
-        Route::post('/set-admin/{userId}',[AuthController::class, 'setAdmin'] );
-        Route::post('/request-reset',[AuthController::class, 'requestReset'] )->name('forgot password');
-        Route::post('/reset-password',[AuthController::class, 'reset'] )->name('reset password');
-        
+        Route::post('/login', [AuthController::class, 'login']);
+        Route::post('/register', [AuthController::class, 'register']);
+        Route::post('/set-admin/{userId}', [AuthController::class, 'setAdmin']);
+        Route::post('/request-reset', [AuthController::class, 'requestReset'])->name('forgot password');
+        Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset password');
     }
 );
 
@@ -44,11 +43,10 @@ Route::group(
         'middleware' => 'auth:sanctum'
     ],
     function () {
-        Route::get('/profile',[UserController::class, 'me'] );
-        Route::put('/update/profile',[UserController::class, 'updateMe'] );
-        // Route::post('/set-admin/{userId}',[AuthController::class, 'setAdmin'] );
-        // Route::post('/request-reset',[AuthController::class, 'requestReset'] )->name('forgot password');
-        // Route::post('/reset-password',[AuthController::class, 'reset'] )->name('reset password');
-        
+        Route::get('/profile', [UserController::class, 'me']);
+        Route::put('/update/profile', [UserController::class, 'updateMe']);
+        Route::get('/all', [UserController::class, 'all']);
+        Route::put('/update/{userId}', [UserController::class, 'update']);
+        Route::delete('/delete/{userId}', [UserController::class, 'delete']);
     }
 );
