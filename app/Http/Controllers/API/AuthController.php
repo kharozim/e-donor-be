@@ -140,7 +140,8 @@ class AuthController extends Controller
         ];
 
         $passwordReset  = ResetPassword::where('user_id', '=', $user->id)->first();
-        if ($passwordReset) {
+        
+        if (!$passwordReset) {
             $passwordReset  = ResetPassword::create($payloads);
         }
         $expiredAt  = Carbon::now()->addHours(3)->format("Y-m-d H:i:s");
@@ -162,7 +163,7 @@ class AuthController extends Controller
         $token  = $this->request->token;
         $passwordReset  = ResetPassword::where('token', '=', $token)->first();
         if (!$passwordReset) {
-            return ResponseUtil::error('Not found', 404);
+            return ResponseUtil::error('token tidak ditemukan', 404);
         }
 
 
