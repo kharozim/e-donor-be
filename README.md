@@ -68,13 +68,28 @@ response :
 
 ```
 
-- Reset Password
+### User
+
+- Profile
 
 ```
-POST : http://localhost:8000/api/auth/reset-password
+GET : http://localhost:8000/api/user/profile
+auth : bearer token
+```
+
+- Update Profile
+
+```
+PUT : http://localhost:8000/api/user/update/profile
+auth : bearer token
 body : 
 {
-	"token" : {token_reset_password},
-	"password" : "11112222"
+	"name": "Budi edit ta",
+	"phone": "123",
+	"age": 160,
+	"blood_type": "O editaa",
+	"image": "https:\/\/thumbs.dreamstime.com\/b\/portrait-indian-people-street-puducherry-india-december-circa-years-man-serious-face-village-front-view-vibrant-174355138.jpg editaa",
+	"token_fcm": ""
 }
 ```
+
