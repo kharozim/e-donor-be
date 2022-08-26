@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->nullable();
             $table->string('password');
             $table->boolean('isPendonor');
-            $table->integer('hisory_donor_count')->default(0);
+            $table->integer('history_donor_count')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
