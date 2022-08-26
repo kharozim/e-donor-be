@@ -46,6 +46,7 @@ Route::group(
         Route::get('/profile', [UserController::class, 'me']);
         Route::put('/update/profile', [UserController::class, 'updateMe']);
         Route::get('/all', [UserController::class, 'all']);
+        Route::get('/detail/{userId}', [UserController::class, 'detail']);
         Route::put('/update/{userId}', [UserController::class, 'update']);
         Route::delete('/delete/{userId}', [UserController::class, 'delete']);
     }

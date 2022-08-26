@@ -48,6 +48,19 @@ class UserController extends Controller
         return ResponseUtil::success($result);
     }
 
+
+    public function detail($userId)
+    {
+        $auth = Auth::user();
+        if ($auth->role_id != 2) {
+            return ResponseUtil::error('Akses ditolak. Anda bukan admin!', 400);
+        }
+
+        $result = User::find($userId);
+
+        return ResponseUtil::success($result);
+    }
+
     public function update($userId)
     {
         $auth = Auth::user();
