@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::group(
@@ -31,6 +32,23 @@ Route::group(
         Route::post('/set-admin/{userId}',[AuthController::class, 'setAdmin'] );
         Route::post('/request-reset',[AuthController::class, 'requestReset'] )->name('forgot password');
         Route::post('/reset-password',[AuthController::class, 'reset'] )->name('reset password');
+        
+    }
+);
+
+
+Route::group(
+    [
+        'prefix' => 'user',
+        'as' => 'user.',
+        'middleware' => 'auth:sanctum'
+    ],
+    function () {
+        Route::get('/profile',[UserController::class, 'me'] );
+        Route::put('/update/profile',[UserController::class, 'updateMe'] );
+        // Route::post('/set-admin/{userId}',[AuthController::class, 'setAdmin'] );
+        // Route::post('/request-reset',[AuthController::class, 'requestReset'] )->name('forgot password');
+        // Route::post('/reset-password',[AuthController::class, 'reset'] )->name('reset password');
         
     }
 );
