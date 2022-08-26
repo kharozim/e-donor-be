@@ -60,7 +60,7 @@ class AuthController extends Controller
         $request['isPendonor'] = false;
         $request['password'] = bcrypt($request['password']);
 
-        $userResponse = User::create($request);
+        $userResponse = User::create($request)->fresh();
 
         $token = $userResponse->createToken('auth_token')->plainTextToken;
         $userResponse['access_token'] = $token;
