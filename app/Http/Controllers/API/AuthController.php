@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\ResetPassword;
 use App\Models\User;
+use App\Utils\HelperUtil;
 use App\Utils\ResponseUtil;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,13 +85,16 @@ class AuthController extends Controller
             return ResponseUtil::error('password tidak boleh kosong', 400);
         }
 
-        $request = $request->only(['phone', 'password', 'token_fcm']);
+        $request = $request->only(['phone', 'password']);
 
         $user = User::where('phone', '=', trim($request['phone']))->first();
         if (!$user) {
             return ResponseUtil::error('Nomor tidak ditemukan', 400);
         }
 
+        if ($this->request['token_fcm']) {
+            $user->update(['token_fcm' => $this->request['token_fcm']]);
+        }
 
         if (Auth::attempt($request, false)) {
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -111,5 +117,64 @@ class AuthController extends Controller
         $user->role_id = 2;
         $user->save();
         return ResponseUtil::success($user);
+    }
+
+    public function requestReset()
+
+    {
+
+        if (!$this->request['phone']) {
+            return ResponseUtil::error('Nomor tidak boleh kosong', 400);
+        }
+
+        $user = USer::where('phone', '=', trim($this->request->phone))->first();
+
+        if (!$user) {
+            return ResponseUtil::error('Nomor tidak ditemukan', 400);
+        }
+        $token  = HelperUtil::randomChar(32);
+
+        $payloads   = [
+            'token' => $token,
+            'user_id' => $user->id,
+        ];
+
+        $passwordReset  = ResetPassword::where('user_id', '=', $user->id)->first();
+        if ($passwordReset) {
+            $passwordReset  = ResetPassword::create($payloads);
+        }
+        $expiredAt  = Carbon::now()->addHours(3)->format("Y-m-d H:i:s");
+
+        $result = ['token_reset_password' => $passwordReset->token, 'phone' => $this->request->phone, 'expired_at' => $expiredAt];
+
+        return ResponseUtil::success($result);
+    }
+
+    public function reset()
+    {
+
+
+        $this->validate($this->request, [
+            'password' => ['required', 'min:8'],
+            'token' => ['required'],
+        ]);
+
+        $token  = $this->request->token;
+        $passwordReset  = ResetPassword::where('token', '=', $token)->first();
+        if (!$passwordReset) {
+            return ResponseUtil::error('Not found', 404);
+        }
+
+
+
+        $user   = User::find($passwordReset->user_id);
+
+        $user->update([
+            'password' => bcrypt($this->request->password),
+        ]);
+
+        ResetPassword::where('user_id', '=', $user->id)->delete();
+
+        return ResponseUtil::success('Berhasil reset password');
     }
 }
