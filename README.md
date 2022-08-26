@@ -92,3 +92,42 @@ body :
 	"token_fcm": ""
 }
 ```
+
+- Semua User
+
+```
+GET : http://localhost:8000/api/user/all
+auth : bearer token admin
+```
+
+- Detail User
+
+```
+GET : http://localhost:8000/api/user/detail/{user id}
+auth : bearer token admin
+```
+
+- Upadte User
+
+```
+PUT : http://localhost:8000/api/user/update/{user id}
+auth : bearer token admin
+body : 
+{
+	"name": "Budi edit ta",
+	"phone": "123",
+	"age": 160,
+	"blood_type": "O editaa",
+	"image": "https:\/\/thumbs.dreamstime.com\/b\/portrait-indian-people-street-puducherry-india-december-circa-years-man-serious-face-village-front-view-vibrant-174355138.jpg editaa",
+	"token_fcm": "",
+	"is_pendonor" : true
+}
+```
+
+
+- Delete User
+
+```
+DELETE : http://localhost:8000/api/user/delete/{user id}
+auth : bearer token admin
+```
