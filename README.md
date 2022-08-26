@@ -19,7 +19,8 @@ body :
 	"phone" : "081212",
 	"age" : 6,
 	"password" : "12121212",
-	"blood_type" : "O"
+	"blood_type" : "O",
+	"token_fcm" : ""
 }
 
 ```
@@ -32,14 +33,48 @@ body :
 {
 	
 	"phone" : "081212",
-	"password" : "12121212"
+	"password" : "12121212",
+	"token_fcm" : ""
 }
 
 ```
 
-- Login
+- Set Admin
 
 ```
 POST : http://localhost:8000/api/auth/set-admin/{user_id}
 
+```
+
+- Request Reset
+
+```
+POST : http://localhost:8000/api/auth/request-reset
+body : 
+{
+	
+	"phone" : "081212",
+}
+response : 
+{
+	{
+	"success": true,
+	"data": {
+		"token_reset_password": "QYd9e6633ZemHhgD9g79yzDg12YTeRIi",
+		"phone": "123",
+		"expired_at": "2022-08-26 18:29:14"
+	}
+}
+
+```
+
+- Reset Password
+
+```
+POST : http://localhost:8000/api/auth/reset-password
+body : 
+{
+	"token" : {token_reset_password},
+	"password" : "11112222"
+}
 ```
