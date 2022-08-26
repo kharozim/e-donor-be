@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('isPendonor');
             $table->integer('history_donor_count')->default(0);
-            $table->string('token_fcm');
+            $table->string('token_fcm')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
