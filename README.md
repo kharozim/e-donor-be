@@ -68,6 +68,18 @@ response :
 
 ```
 
+- Request Reset
+
+```
+POST : http://localhost:8000/api/auth/reset-password
+body : 
+{
+	"token" : { token_reset_password }
+	"password" : "123123",
+}
+
+```
+
 ### User
 
 - Profile
@@ -129,5 +141,43 @@ body :
 
 ```
 DELETE : http://localhost:8000/api/user/delete/{user id}
+auth : bearer token admin
+```
+
+### DONOR
+
+- Mendaftar jadi Pendonor
+
+```
+POST : http://localhost:8000/api/donor/add-request
+auth : bearer token
+body : 
+{
+	"nik" : 252217212333,
+	"phone" : 1234,
+	"address" : "Kota barat Surakarta",
+	"ttl" : "Surakarta / 20 Agustus 2000",
+	"city" : "Surakarta"
+}
+```
+
+- Detail donor saya
+
+```
+GET : http://localhost:8000/api/donor/me
+auth : bearer token
+```
+
+- Semua donor
+
+```
+GET : http://localhost:8000/api/donor/all-request
+auth : bearer token admin
+```
+
+- Semua request donor
+
+```
+GET : http://localhost:8000/api/donor/all-request
 auth : bearer token admin
 ```
