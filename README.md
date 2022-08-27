@@ -68,7 +68,7 @@ response :
 
 ```
 
-- Request Reset
+- Reset Password
 
 ```
 POST : http://localhost:8000/api/auth/reset-password
@@ -119,7 +119,7 @@ GET : http://localhost:8000/api/user/detail/{user id}
 auth : bearer token admin
 ```
 
-- Upadte User
+- Update User
 
 ```
 PUT : http://localhost:8000/api/user/update/{user id}
