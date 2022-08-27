@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ResetPassword extends Model
 {
-    use HasFactory, FormatTimestamp, SoftDeletes;
+    use HasFactory, FormatTimestamp;
 
     protected $fillable = [
         'token',

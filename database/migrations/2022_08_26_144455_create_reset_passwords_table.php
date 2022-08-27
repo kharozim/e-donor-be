@@ -18,7 +18,6 @@ class CreateResetPasswordsTable extends Migration
             $table->integer('user_id');
             $table->string('token');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

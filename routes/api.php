@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\DonorController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,3 +52,22 @@ Route::group(
         Route::delete('/delete/{userId}', [UserController::class, 'delete']);
     }
 );
+
+Route::group(
+    [
+        'prefix' => 'donor',
+        'as' => 'donor.',
+        'middleware' => 'auth:sanctum'
+    ],
+    function () {
+        Route::get('/all', [DonorController::class, 'all']);
+        Route::get('/me', [DonorController::class, 'myDonor']);
+        Route::get('/all-request', [DonorController::class, 'allRequest']);
+        Route::post('/confirmation/{donorId}', [DonorController::class, 'confirmation']);
+        Route::post('/add-request', [DonorController::class, 'addRequest']);
+        Route::get('/detail/{donorId}', [DonorController::class, 'detail']);
+        // Route::put('/update/{donorId}', [DonorController::class, 'update']);
+        Route::delete('/delete/{donorId}', [DonorController::class, 'delete']);
+    }
+);
+
