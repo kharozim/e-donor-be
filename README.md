@@ -168,16 +168,27 @@ GET : http://localhost:8000/api/donor/me
 auth : bearer token
 ```
 
-- Semua donor
+- Semua pendaftar donor
+
+```
+GET : http://localhost:8000/api/donor/all
+auth : bearer token admin
+```
+
+- Semua pendaftar donor yang belum dikonfirmasi
 
 ```
 GET : http://localhost:8000/api/donor/all-request
 auth : bearer token admin
 ```
 
-- Semua request donor
+- Konfirmasi pendonor
 
 ```
-GET : http://localhost:8000/api/donor/all-request
+POST : http://localhost:8000/api/donor/confirmation/{donor id}
 auth : bearer token admin
+body : 
+{
+	"status" : 1   // 1 = diterima, -1 = ditolak
+}
 ```
