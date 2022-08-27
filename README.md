@@ -144,7 +144,7 @@ DELETE : http://localhost:8000/api/user/delete/{user id}
 auth : bearer token admin
 ```
 
-### DONOR
+### Pendonor
 
 - Mendaftar jadi Pendonor
 
