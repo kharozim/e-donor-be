@@ -182,6 +182,13 @@ GET : http://localhost:8000/api/donor/all-request
 auth : bearer token admin
 ```
 
+- Detail pendonor
+
+```
+GET : http://localhost:8000/api/donor/detail/{donor id}
+auth : bearer token admin
+```
+
 - Konfirmasi pendonor
 
 ```
@@ -192,3 +199,11 @@ body :
 	"status" : 1   // 1 = diterima, -1 = ditolak
 }
 ```
+
+- Hapus pendonor
+
+```
+DELETE : http://localhost:8000/api/donor/delete/{donor id}
+auth : bearer token admin
+```
+
