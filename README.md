@@ -161,7 +161,7 @@ body :
 }
 ```
 
-- Detail donor saya
+- Cek status Pendaftaran saya
 
 ```
 GET : http://localhost:8000/api/donor/me
