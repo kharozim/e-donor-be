@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Utils\ResponseUtil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Mockery\Undefined;
 
 class DonorController extends Controller
 {
@@ -49,7 +48,7 @@ class DonorController extends Controller
 
         $donor = Donor::where('user_id', '=', $user->id)->first();
         if (!$donor) {
-            return ResponseUtil::error('Donor tidak ditemukan', 400);
+            return ResponseUtil::error('Anda belum mendaftar', 400);
         }
 
         return ResponseUtil::success($donor);
