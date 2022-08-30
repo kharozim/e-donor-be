@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DonorController;
+use App\Http\Controllers\API\SupportController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -70,4 +71,25 @@ Route::group(
         Route::delete('/delete/{donorId}', [DonorController::class, 'delete']);
     }
 );
+
+
+Route::group(
+    [
+        'prefix' => 'support',
+        'as' => 'support.',
+        'middleware' => 'auth:sanctum'
+    ],
+    function () {
+        Route::get('/all', [SupportController::class, 'all']);
+        Route::get('/all-request', [SupportController::class, 'allRequest']);
+        Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
+       
+        Route::post('/add', [SupportController::class, 'add']);
+        Route::post('/take/{supportId}', [SupportController::class, 'take']);
+
+        Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
+        Route::delete('/delete/{supportId}', [SupportController::class, 'delete']);
+    }
+);
+
 

@@ -13,24 +13,43 @@ class Support extends Model
     protected $fillable =
     [
         'user_id',
-        'nik',
-        'ttl',
+        'blood_type_request',
         'address',
-        'city',
         'status',
-        'phone',
+        'take_by',
     ];
 
     protected $casts =
     [
         'user_id' => 'integer',
         'status' => 'integer',
-        'nik' => 'integer'
+        'take_by' => 'integer'
     ];
 
-    // $table->integer('user_id');
-    // $table->string('blood_type_request');
-    // $table->tinyInteger('status');
-    // $table->integer('take_by');
+    protected $appends =
+    [
+        'user',
+        'pendonor'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function pendonor()
+    {
+        return $this->belongsTo(User::class, 'take_by');
+    }
+
+    public function getUserAttribute()
+    {
+        return $this->user()->select(['name', 'age'])->first();
+    }
+
+    public function getPendonorAttribute()
+    {
+        return $this->pendonor()->select(['name', 'blood_type', 'age'])->first();
+    }
 
 }

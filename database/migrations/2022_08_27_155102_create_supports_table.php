@@ -16,9 +16,10 @@ class CreateSupportsTable extends Migration
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('address');
             $table->string('blood_type_request');
             $table->tinyInteger('status');
-            $table->integer('take_by');
+            $table->integer('take_by')->nullable();
             $table->timestamps();
         });
     }
