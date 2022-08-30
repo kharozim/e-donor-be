@@ -88,6 +88,6 @@ class SupportController extends Controller
 
         $support->update(['status' => 1, 'take_by' => $user->id]);
 
-        return ResponseUtil::success($support);
+        return ResponseUtil::success($support->fresh());
     }
 }

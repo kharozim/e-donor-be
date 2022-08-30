@@ -207,3 +207,41 @@ DELETE : http://localhost:8000/api/donor/delete/{donor id}
 auth : bearer token admin
 ```
 
+### Bantuan
+
+- Ajukan Bantuan
+
+```
+POST : http://localhost:8000/api/support/all-request
+auth : bearer token
+body : 
+{
+	"address" : "Solo Jawa Tengah",
+	"blood_type_request" : "O"
+}
+```
+
+- All Bantuan user
+
+```
+GET : http://localhost:8000/api/support/all-request
+auth : bearer token
+```
+
+- All Bantuan Admin
+```
+GET : http://localhost:8000/api/support/all
+auth : bearer token admin
+```
+
+- Detail Bantuan
+```
+GET : http://localhost:8000/api/support/detail/{id}
+auth : bearer token
+```
+
+- Ambil Bantuan
+```
+POST : http://localhost:8000/api/support/take/{id}
+auth : bearer token
+```

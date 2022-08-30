@@ -86,9 +86,6 @@ Route::group(
        
         Route::post('/add', [SupportController::class, 'add']);
         Route::post('/take/{supportId}', [SupportController::class, 'take']);
-
-        Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
-        Route::delete('/delete/{supportId}', [SupportController::class, 'delete']);
     }
 );
 
