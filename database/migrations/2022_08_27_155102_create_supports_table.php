@@ -20,7 +20,7 @@ class CreateSupportsTable extends Migration
             $table->string('blood_type_request');
             $table->tinyInteger('status');
             $table->integer('take_by')->nullable();
-            $table->string('expired_at');
+            $table->timestamp('expired_at');
             $table->timestamps();
         });
     }

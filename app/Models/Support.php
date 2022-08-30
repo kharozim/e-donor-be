@@ -17,13 +17,14 @@ class Support extends Model
         'address',
         'status',
         'take_by',
+        'expired_at'
     ];
 
     protected $casts =
     [
         'user_id' => 'integer',
         'status' => 'integer',
-        'take_by' => 'integer'
+        'take_by' => 'integer',
     ];
 
     protected $appends =

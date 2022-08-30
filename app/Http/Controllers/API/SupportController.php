@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Support;
 use App\Utils\ResponseUtil;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,22 @@ class SupportController extends Controller
         $user = Auth::user();
 
         $result = Support::where('status', '=', 0)->get()->sortDesc()->values()->all();
+        if (count($result) > 0) {
+            $now = Carbon::now('Asia/Jakarta')->toDateTimeString();
+            $count = 0;
+
+            for ($i = 0; $i <= count($result) - 1; $i++) {
+                $new = Carbon::createFromFormat('Y-m-d H:i:s',  $result[$i]->expired_at, 'Asia/Jakarta')->toDateTimeString();
+                if ($now > $new) {
+                    $result[$i]->update(['status' => -1]);
+                    $count += 1;
+                }
+            }
+
+            if ($count > 0) {
+                $result = Support::where('status', '=', 0)->get()->sortDesc()->values()->all();
+            }
+        }
         return ResponseUtil::success($result);
     }
 
@@ -69,6 +86,9 @@ class SupportController extends Controller
         $request['user_id'] = $user->id;
         $request['status'] = 0;
 
+        $expiredAt = Carbon::now('Asia/Jakarta')->addMinutes(15)->toDateTimeString();
+        $request['expired_at'] = $expiredAt;
+
         $result = Support::create($request);
         return ResponseUtil::success($result);
     }
@@ -79,7 +99,7 @@ class SupportController extends Controller
 
         $support = Support::find($supportId);
 
-        if(!$user->is_pendonor){
+        if (!$user->is_pendonor) {
             return ResponseUtil::error('Anda bukan pendonor aktif, silahkan daftar terlebih dulu', 400);
         }
 
