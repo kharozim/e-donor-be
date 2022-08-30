@@ -78,8 +78,17 @@ class SupportController extends Controller
         $user = Auth::user();
 
         $support = Support::find($supportId);
+
+        if(!$user->is_pendonor){
+            return ResponseUtil::error('Anda bukan pendonor aktif, silahkan daftar terlebih dulu', 400);
+        }
+
         if (!$support) {
             return ResponseUtil::error('Bantuan tidak ditemukan', 400);
+        }
+
+        if ($support->id == $user->id) {
+            return ResponseUtil::error('Tidak dapat mengambil bantuan anda sendiri', 400);
         }
 
         if ($support->blood_type_request != $user->blood_type) {
