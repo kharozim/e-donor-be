@@ -25,7 +25,7 @@ class SupportController extends Controller
             return ResponseUtil::error('Akses ditolak. Anda bukan admin', 400);
         }
 
-        $result = Support::get()->sortDesc()->values()->all();;
+        $result = Support::get()->sortDesc()->values()->all();
         return ResponseUtil::success($result);
     }
 
@@ -48,8 +48,9 @@ class SupportController extends Controller
             }
 
             if ($count > 0) {
-                $result = Support::where('status', '=', 0)->get()->sortDesc()->values()->all();
+                $result = $result->fresh();
             }
+            return ResponseUtil::success($count);
         }
         return ResponseUtil::success($result);
     }
