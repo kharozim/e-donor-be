@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Donor;
 use App\Models\User;
 use App\Utils\ResponseUtil;
 use Illuminate\Http\Request;
@@ -97,6 +98,14 @@ class UserController extends Controller
 
         if ($user->id == $auth->id) {
             return ResponseUtil::error('Tidak dapat menghapus diri sendiri', 403);
+        }
+
+        if ($user->is_pendonor) {
+            $pendonor = Donor::where('user_id', '=', $user->id)->first();
+
+            if ($pendonor) {
+                $pendonor->delete();
+            }
         }
 
         $user->delete();
