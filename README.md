@@ -212,7 +212,7 @@ auth : bearer token admin
 - Ajukan Bantuan
 
 ```
-POST : http://localhost:8000/api/support/all-request
+POST : http://localhost:8000/api/support/add
 auth : bearer token
 body : 
 {
