@@ -154,7 +154,7 @@ auth : bearer token
 body : 
 {
 	"nik" : 252217212333,
-	"phone" : 1234,
+	"phone" : "1234",
 	"address" : "Kota barat Surakarta",
 	"ttl" : "Surakarta / 20 Agustus 2000",
 	"city" : "Surakarta"
