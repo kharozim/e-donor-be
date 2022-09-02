@@ -48,7 +48,7 @@ class SupportController extends Controller
             }
 
             if ($count > 0) {
-                $result = $result->fresh();
+                $result = Support::where('status', '=', 0)->get()->sortDesc()->values()->all();
             }
             return ResponseUtil::success($count);
         }
