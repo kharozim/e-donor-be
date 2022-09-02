@@ -60,7 +60,7 @@ class AuthController extends Controller
 
 
         $request['role_id'] = 1;
-        $request['is_pendonor'] = false;
+        $request['is_pendonor'] = true;
         $request['password'] = bcrypt($request['password']);
 
         $userResponse = User::create($request)->fresh();
