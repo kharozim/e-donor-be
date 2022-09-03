@@ -33,6 +33,18 @@ class SupportController extends Controller
         return ResponseUtil::success($result);
     }
 
+
+    public function allTakeByMe()
+    {
+        $user = Auth::user();
+
+        $result = Support::where([
+            ['take_by', '=', $user->id],
+            ['status', '!=', 0]
+        ])->get()->sortDesc()->values()->all();
+        return ResponseUtil::success($result);
+    }
+
     public function allRequest()
     {
 
