@@ -228,6 +228,15 @@ GET : http://localhost:8000/api/support/all-request
 auth : bearer token
 ```
 
+- ALl History user
+
+```
+GET : http://localhost:8000/api/support/all-take-by-me
+auth : bearer token
+
+```
+
+
 - All Bantuan Admin
 ```
 GET : http://localhost:8000/api/support/all
