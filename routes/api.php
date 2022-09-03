@@ -102,9 +102,7 @@ Route::group(
     function () {
         Route::get('/all', [NotificationController::class, 'all']);
         Route::post('/read/{notifId}', [NotificationController::class, 'read']);
-        // Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
-
-        Route::post('/test', [NotificationController::class, 'sendMessage']);
-        // Route::post('/take/{supportId}', [SupportController::class, 'take']);
     }
 );
+
+Route::post('/notification/test', [NotificationController::class, 'sendMessage']);

@@ -176,10 +176,11 @@ class SupportController extends Controller
             if ($support->user->token_fcm) {
                 FirebaseUtil::sendToFcm($support->user->token_fcm, $notification);
             }
-            NotificationController::add($notification);
         } catch (Exception $e) {
             // throw $e;
         }
+
+        NotificationController::add($notification);
 
         return ResponseUtil::success($support);
     }

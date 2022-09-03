@@ -63,6 +63,6 @@ class NotificationController extends Controller
             'is_read' => false
         ];
 
-        Notification::created($request);
+       Notification::create($request);
     }
 }
