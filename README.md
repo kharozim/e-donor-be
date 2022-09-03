@@ -254,3 +254,19 @@ auth : bearer token
 POST : http://localhost:8000/api/support/take/{id}
 auth : bearer token
 ```
+
+### Notification
+
+- All
+
+```
+GET : http://localhost:8000/api/notification/all
+auth : bearer token
+```
+
+- Read
+
+```
+POST : http://localhost:8000/api/notification/read/{notif id}
+auth : bearer token
+```
