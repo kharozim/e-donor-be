@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "donor-darah-e7254",
+  "private_key_id": "9d6018ea9a0e8901fcf1fe6b49a81b6d5157b5ac",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDJ1NYUy6BuuyQF\nJ4SGK/vp4oEuakQRY78kofZT1ych9cmts539SMsIo4swENyGn5B+8R3g48G3Js6e\nRDpoKU6UYCJ8rrGu38hyL/CWOVFkD40fpDZGHy4RQtKpcdpgzC0EX38RSV6ronbj\nGNGZWcXFldMiTiT/J7FKobl6W8RoICCG78+1ojIREEOF662dVWZxL53/vKDUdU9v\nhj+vW/6MJzNupoXAGSew1+EHoOgMnhoWEa6K26f+BsPYXjcI8MrFCzIJO7xI+p+g\nGusmzlrcApWDefCkXyiDbfP6Em8QjfpzzN4C2OBO/EA9D2gGuwi+3bJFsllBHtR/\nBHudAGMVAgMBAAECggEAEpOUYLWdPpPa7N6GRBMoTI6cdTkyqqcToLuHgI/8+hM1\nTNeLYxSgG1tyJCppIbruAcEPjvNnkQPxYH/HIG8s3Fs80V0C3aWbPWdMLYd5Bkyo\nIJFsrWeRReVwnkfsYZxpSE3B1EV8gS+i4aQXJpYsrdLsa+vlW9a7arMX7zsjCLJC\ndDPRNS6UuLpITMpmml0kXoQdQ09Hh3eIejXQbZ+T2ai+rkqrIBacyAcO0FUNTUUL\n13OukYPI/plOAk4wHLj8akSYZtpZW/S4h1wys+zguCiUFpeq6VblDBYtz1MrWQk/\nCW2SLf3sEBNrSNdiMXpLUWD8tIu65C1NX7GAPOMgAQKBgQDkLLvQxOy274Tb1Seo\n8BJfFPyRAv0ZBOUd4rHYlFTkHmMpc8lqc4g8bzPMjwZ0oIxMfd789BaUv+jKLqSB\nxi8dEHf3zf7zSQBBWvzjVTUd2aUPS7k5LZ4eQxD9/0bpc0T9XrMcDNN44LkuW/g4\nF3tMCHBmF+ssr20iuz50E1F6gQKBgQDicbQbFAc5oe0k2AkjCBhNfG78YAkWH7r5\ny1/VpN+n9QpOQ83EmpUgR5bjRCcdFbstfQ5y5XBtdFfWifjBsxeHim5yGzSgqy3J\nC+B9Sc6vjdqgvFjCSS5vTXez4PMh9K/cX/CFtt2XulZHrrpeaaBMLLzTwMXXA20L\nhrUOZY0WlQKBgCkNP1FFTM1w9HdUt0j2wGdo8DPq1Lx+m/Yvhg3QSiGsseyQT2me\nlaFB5JDmHqQ3CmbssoTSKYnjqS9PCvvqOynAf8UOw9LjjG81vo/sEZ1oPgEtf4qh\nAXSyXklEd26i9YOcWR8v05BI5ihIFbWJy/4W+pnzrbUhbsIz6/2YSC2BAoGBAKyD\n5awPiSWeOLYuJF/dBe7akw+Q9rs1N1ShXYS9lGs4Iz7XJ0fWYTBzef/w5z+gU7bn\nJH/iTtIEpfrbqHmhwJZRn60tDt4tK7eUZdXtyhozH1H/zDtQV6ESStTu1yySZvyk\n1vB4DcBPhPYdpvzQyf/ewYktv0v83zG90eiC84c1AoGBALvKR6QVczOwM/bVeBJP\nOSlAO6BSDHvaxgDHhikA/2HAUTWfMG6732d2JZ3KK0Ox2NDFDriULNFRftYp8Cvu\nlyx4oJ7MK3Q8L7P+terL7CFOyUjqqHHJqwXROQSooLjQ0TaOe0hPUZaNzjG79xQU\nZL+odp+Ja7TPH3GeCO3fOCIc\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-h15l9@donor-darah-e7254.iam.gserviceaccount.com",
+  "client_id": "102487362305612211565",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-h15l9%40donor-darah-e7254.iam.gserviceaccount.com"
+}
