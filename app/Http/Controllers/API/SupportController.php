@@ -92,7 +92,6 @@ class SupportController extends Controller
             ['role_id', '=', 1],
             ['id', '!=', $user->id]
         ])
-            ->whereNotNull('token_fcm')
             ->get();
 
 
@@ -118,7 +117,7 @@ class SupportController extends Controller
         foreach ($users as $item) {
             $notification = [
                 'title' => 'Relawan donor darah dibutuhkan!',
-                'body' => 'Bpk / Ibu. ' . $result->user->name . ' sedang membutuhkan bantuan donor darah : ' . $result->blood_type_request,
+                'body' => 'Tn / Ny. ' . $result->user->name . ' sedang membutuhkan bantuan donor darah : ' . $result->blood_type_request,
                 'type' => 'support',
                 'user_id' => $item->id
             ];
