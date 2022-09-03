@@ -96,8 +96,6 @@ class SupportController extends Controller
             ->get();
 
 
-
-
         $request = $this->request;
 
         if (!$request['address']) {
@@ -121,9 +119,11 @@ class SupportController extends Controller
             $notification = [
                 'title' => 'Relawan donor darah dibutuhkan!',
                 'body' => 'Bpk / Ibu ' . $result->user->name . ' sedang membutuhkan bantuan donor darah : ' . $result->blood_type_request,
-                'type' => 'support'
+                'type' => 'support',
+                'user_id' => $result->user_id
             ];
             FirebaseUtil::sendToFcm($item->token_fcm, $notification);
+            NotificationController::add($notification);
         }
 
         return ResponseUtil::success($result);
@@ -167,13 +167,16 @@ class SupportController extends Controller
         $notification = [
             'title' => 'Selamat permintaan donor telah di ambil oleh ' . $user->name,
             'body' => 'donor akan segera dikirim',
-            'type' => 'home'
+            'type' => 'home',
+            'user_id' => $support->user_id
         ];
+
 
         try {
             if ($support->user->token_fcm) {
                 FirebaseUtil::sendToFcm($support->user->token_fcm, $notification);
             }
+            NotificationController::add($notification);
         } catch (Exception $e) {
             // throw $e;
         }

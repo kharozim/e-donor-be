@@ -18,6 +18,7 @@ class CreateNotificationsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('user_id');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
