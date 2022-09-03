@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Support;
+use App\Models\User;
 use App\Utils\ResponseUtil;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -116,6 +117,7 @@ class SupportController extends Controller
         }
 
         $support->update(['status' => 1, 'take_by' => $user->id]);
+        $user = User::find($user->id)->update(['history_donor_count' => $user->history_donor_count + 1]);
 
         return ResponseUtil::success($support->fresh());
     }
