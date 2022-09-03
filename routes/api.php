@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DonorController;
+use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\SupportController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
@@ -88,5 +89,25 @@ Route::group(
         Route::post('/take/{supportId}', [SupportController::class, 'take']);
     }
 );
+
+
+
+Route::group(
+    [
+        'prefix' => 'notification',
+        'as' => 'notification.',
+        // 'middleware' => 'auth:sanctum'
+    ],
+    function () {
+        // Route::get('/all', [SupportController::class, 'all']);
+        // Route::get('/all-request', [SupportController::class, 'allRequest']);
+        // Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
+       
+        Route::post('/test', [NotificationController::class, 'sendMessage']);
+        // Route::post('/take/{supportId}', [SupportController::class, 'take']);
+    }
+);
+
+
 
 
