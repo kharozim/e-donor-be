@@ -103,7 +103,6 @@ class DonorController extends Controller
         }
 
         $request->validate([
-            'phone' => 'integer',
             'nik' => 'integer'
         ]);
         $request = $request->only(['nik', 'phone', 'ttl', 'address', 'city']);

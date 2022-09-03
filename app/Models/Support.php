@@ -45,12 +45,11 @@ class Support extends Model
 
     public function getUserAttribute()
     {
-        return $this->user()->select(['name', 'age'])->first();
+        return $this->user()->select([ 'name', 'age', 'phone', 'token_fcm'])->first();
     }
 
     public function getPendonorAttribute()
     {
         return $this->pendonor()->select(['name', 'blood_type', 'age'])->first();
     }
-
 }

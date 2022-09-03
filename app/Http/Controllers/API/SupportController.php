@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Donor;
 use App\Models\Support;
+use App\Models\User;
+use App\Utils\FirebaseUtil;
 use App\Utils\ResponseUtil;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -96,8 +99,8 @@ class SupportController extends Controller
     public function take($supportId)
     {
         $user = Auth::user();
-
         $support = Support::find($supportId);
+        $donor = Donor::where('user_id', '=', $user->id)->first();
 
         if (!$user->is_pendonor) {
             return ResponseUtil::error('Anda bukan pendonor aktif, silahkan daftar terlebih dulu', 400);
@@ -107,7 +110,11 @@ class SupportController extends Controller
             return ResponseUtil::error('Bantuan tidak ditemukan', 400);
         }
 
-        if ($support->id == $user->id) {
+        if (!$donor) {
+            return ResponseUtil::error('Anda belum terdaftar jadi pendonor, Silahkan mendaftar terlebih dahulu.', 400);
+        }
+
+        if ($support->user_id == $user->id) {
             return ResponseUtil::error('Tidak dapat mengambil bantuan anda sendiri', 400);
         }
 
@@ -115,7 +122,14 @@ class SupportController extends Controller
             return ResponseUtil::error('Golongan darah tidak sesuai', 403);
         }
 
+
         $support->update(['status' => 1, 'take_by' => $user->id]);
+        $user = User::find($user->id)->update(['history_donor_count' => $user->history_donor_count + 1, 'is_pendonor' => false]);
+
+        // $notification = [
+        //     ''
+        // ];
+        // FirebaseUtil::sendToFcm($support->user->token_fcm, $notification);
 
         return ResponseUtil::success($support->fresh());
     }
