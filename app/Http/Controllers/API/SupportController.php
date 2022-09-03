@@ -118,11 +118,17 @@ class SupportController extends Controller
         foreach ($users as $item) {
             $notification = [
                 'title' => 'Relawan donor darah dibutuhkan!',
-                'body' => 'Bpk / Ibu ' . $result->user->name . ' sedang membutuhkan bantuan donor darah : ' . $result->blood_type_request,
+                'body' => 'Bpk / Ibu. ' . $result->user->name . ' sedang membutuhkan bantuan donor darah : ' . $result->blood_type_request,
                 'type' => 'support',
-                'user_id' => $result->user_id
+                'user_id' => $item->id
             ];
-            FirebaseUtil::sendToFcm($item->token_fcm, $notification);
+            try {
+                if ($item->token_fcm) {
+                    FirebaseUtil::sendToFcm($item->token_fcm, $notification);
+                }
+            } catch (Exception $e) {
+                // throw $e;
+            }
             NotificationController::add($notification);
         }
 
