@@ -107,7 +107,7 @@ class SupportController extends Controller
             return ResponseUtil::error('Bantuan tidak ditemukan', 400);
         }
 
-        if ($support->id == $user->id) {
+        if ($support->user->id == $user->id) {
             return ResponseUtil::error('Tidak dapat mengambil bantuan anda sendiri', 400);
         }
 
