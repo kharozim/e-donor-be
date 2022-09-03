@@ -97,11 +97,11 @@ Route::group(
     [
         'prefix' => 'notification',
         'as' => 'notification.',
-        // 'middleware' => 'auth:sanctum'
+        'middleware' => 'auth:sanctum'
     ],
     function () {
-        // Route::get('/all', [SupportController::class, 'all']);
-        // Route::get('/all-request', [SupportController::class, 'allRequest']);
+        Route::get('/all', [NotificationController::class, 'all']);
+        Route::post('/read/{notifId}', [NotificationController::class, 'read']);
         // Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
 
         Route::post('/test', [NotificationController::class, 'sendMessage']);
