@@ -85,7 +85,7 @@ Route::group(
         Route::get('/all-request', [SupportController::class, 'allRequest']);
         Route::get('/all-take-by-me', [SupportController::class, 'allTakeByMe']);
         Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
-       
+
         Route::post('/add', [SupportController::class, 'add']);
         Route::post('/take/{supportId}', [SupportController::class, 'take']);
     }
@@ -103,12 +103,8 @@ Route::group(
         // Route::get('/all', [SupportController::class, 'all']);
         // Route::get('/all-request', [SupportController::class, 'allRequest']);
         // Route::get('/detail/{supportId}', [SupportController::class, 'detail']);
-       
+
         Route::post('/test', [NotificationController::class, 'sendMessage']);
         // Route::post('/take/{supportId}', [SupportController::class, 'take']);
     }
 );
-
-
-
-
