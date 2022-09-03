@@ -3,40 +3,32 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Utils\FirebaseUtil;
 use App\Utils\ResponseUtil;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Contract\Messaging;
-use Kreait\Firebase\Messaging\CloudMessage;
 
 class NotificationController extends Controller
 {
-    protected $request;
-
-    public function __construct(Request $request)
+    public function __construct(Request $request, Messaging $messaging)
     {
         $this->request = $request;
+        $this->messaging = $messaging;
     }
 
     public function sendMessage()
     {
+        $request = $this->request->only(['title', 'body', 'token', 'type']);
 
-        // $factory = (new Factory)
-        // ->withServiceAccount('sa.json');
+        $deviceToken = $request['token'];
 
-        // $message = Firebase::messaging();
+        $payload = [
+            'title' => $request['title'],
+            'body' => $request['body'],
+            'type' => $request['type']
+        ];
 
-        $deviceToken = 'dfZeUhmXSf2_iyH3bf1wJc:APA91bFZxL8NdJ2fk-toOvV9Q5iSrEVpsN6dEV_E--hV97m8sHTGIniA3pQlFxW0nMxYGLge9ylKZjzkJ2bmaEkVP0F5biybpxlcQ3vsp7WCtgR26YNhhAb3QvkLEfrD5EhQIS5gujJt';
-
-        $messaging = new Messaging;
-        // $message = CloudMessage::withTarget('token', $deviceToken);
-
-        $message = CloudMessage::fromArray([
-            'token' => $deviceToken,
-            'notification' => ['title' => 'coba', 'body' => 'ini body'], // optional
-            'data' => [/* data array */], // optional
-        ]);
-
-        $messaging->send($message);
-        return ResponseUtil::success('stop');
+        FirebaseUtil::sendToFcm($deviceToken, $payload, $request['type']);
+        return ResponseUtil::success($payload);
     }
 }
