@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Utils\FirebaseUtil;
 use App\Utils\ResponseUtil;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,6 +75,16 @@ class SupportController extends Controller
     {
         $user = Auth::user();
 
+        $users = User::where([
+            ['is_pendonor', '=', true],
+            ['role_id', '=', 1],
+            ['id', '!=', $user->id]
+        ])
+            ->whereNotNull('token_fcm')
+            ->get();
+
+
+
 
         $request = $this->request;
 
@@ -93,6 +104,16 @@ class SupportController extends Controller
         $request['expired_at'] = $expiredAt;
 
         $result = Support::create($request);
+
+        foreach ($users as $item) {
+            $notification = [
+                'title' => 'Relawan donor darah dibutuhkan!',
+                'body' => 'Bpk / Ibu ' . $result->user->name . ' sedang membutuhkan bantuan donor darah : ' . $result->blood_type_request,
+                'type' => 'support'
+            ];
+            FirebaseUtil::sendToFcm($item->token_fcm, $notification);
+        }
+
         return ResponseUtil::success($result);
     }
 
@@ -103,7 +124,7 @@ class SupportController extends Controller
         $donor = Donor::where('user_id', '=', $user->id)->first();
 
         if (!$user->is_pendonor) {
-            return ResponseUtil::error('Anda bukan pendonor aktif, silahkan daftar terlebih dulu', 400);
+            return ResponseUtil::error('Anda bukan pendonor aktif, silahkan hubungi admin', 400);
         }
 
         if (!$support) {
@@ -112,6 +133,10 @@ class SupportController extends Controller
 
         if (!$donor) {
             return ResponseUtil::error('Anda belum terdaftar jadi pendonor, Silahkan mendaftar terlebih dahulu.', 400);
+        }
+
+        if ($support->status != 0) {
+            return ResponseUtil::error('Bantuan telah ditutup', 400);
         }
 
         if ($support->user_id == $user->id) {
@@ -124,13 +149,23 @@ class SupportController extends Controller
 
 
         $support->update(['status' => 1, 'take_by' => $user->id]);
-        $user = User::find($user->id)->update(['history_donor_count' => $user->history_donor_count + 1, 'is_pendonor' => false]);
+        $user = User::find($user->id);
+        $user->update(['history_donor_count' => $user->history_donor_count + 1, 'is_pendonor' => false]);
 
-        // $notification = [
-        //     ''
-        // ];
-        // FirebaseUtil::sendToFcm($support->user->token_fcm, $notification);
+        $notification = [
+            'title' => 'Selamat permintaan donor telah di ambil oleh ' . $user->name,
+            'body' => 'donor akan segera dikirim',
+            'type' => 'home'
+        ];
 
-        return ResponseUtil::success($support->fresh());
+        try {
+            if ($support->user->token_fcm) {
+                FirebaseUtil::sendToFcm($support->user->token_fcm, $notification);
+            }
+        } catch (Exception $e) {
+            // throw $e;
+        }
+
+        return ResponseUtil::success($support);
     }
 }

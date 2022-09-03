@@ -10,7 +10,7 @@ class FirebaseUtil
 
 {
 
-    public static function sendToFcm($tokenFcm = '', $payload, $type = 'home')
+    public static function sendToFcm($tokenFcm = '', $payload)
     {
 
         $factory = (new Factory)
