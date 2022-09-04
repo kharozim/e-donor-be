@@ -138,26 +138,26 @@ class SupportController extends Controller
     {
         $user = Auth::user();
         $support = Support::find($supportId);
-        $donor = Donor::where('user_id', '=', $user->id)->first();
-
-        if (!$user->is_pendonor) {
-            return ResponseUtil::error('Anda bukan pendonor aktif, silahkan hubungi admin', 400);
-        }
+        // $donor = Donor::where('user_id', '=', $user->id)->first();
 
         if (!$support) {
             return ResponseUtil::error('Bantuan tidak ditemukan', 400);
         }
 
-        if (!$donor) {
-            return ResponseUtil::error('Anda belum terdaftar jadi pendonor, Silahkan mendaftar terlebih dahulu.', 400);
+        if ($support->user_id == $user->id) {
+            return ResponseUtil::error('Tidak dapat mengambil bantuan anda sendiri', 400);
         }
+
+        // if (!$donor) {
+        //     return ResponseUtil::error('Anda belum terdaftar jadi pendonor, Silahkan mendaftar terlebih dahulu.', 400);
+        // }
 
         if ($support->status != 0) {
             return ResponseUtil::error('Bantuan telah ditutup', 400);
         }
 
-        if ($support->user_id == $user->id) {
-            return ResponseUtil::error('Tidak dapat mengambil bantuan anda sendiri', 400);
+        if (!$user->is_pendonor) {
+            return ResponseUtil::error('Anda bukan pendonor aktif, silahkan hubungi admin', 400);
         }
 
         if ($support->blood_type_request != $user->blood_type) {
