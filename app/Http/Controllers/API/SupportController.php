@@ -38,7 +38,6 @@ class SupportController extends Controller
 
         $result = Support::where([
             ['user_id', '=', $user->id],
-            ['status', '!=', 0]
         ])->get()->sortDesc()->values()->all();
         return ResponseUtil::success($result);
     }
