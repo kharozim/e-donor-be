@@ -32,7 +32,16 @@ class SupportController extends Controller
         $result = Support::get()->sortDesc()->values()->all();
         return ResponseUtil::success($result);
     }
+    public function allCreateByMe()
+    {
+        $user = Auth::user();
 
+        $result = Support::where([
+            ['user_id', '=', $user->id],
+            ['status', '!=', 0]
+        ])->get()->sortDesc()->values()->all();
+        return ResponseUtil::success($result);
+    }
 
     public function allTakeByMe()
     {
