@@ -270,3 +270,70 @@ auth : bearer token
 POST : http://localhost:8000/api/notification/read/{notif id}
 auth : bearer token
 ```
+
+### Information PMI
+
+- all 
+
+```
+GET : http://localhost:8000/api/information/all
+auth : bearer token
+
+```
+
+- detail 
+
+```
+GET : http://localhost:8000/api/information/detail/{information id}
+auth : bearer token
+
+```
+
+- add 
+
+```
+POST : http://localhost:8000/api/information/add
+auth : bearer token (admin)
+body : multipart
+	title : text
+	desctiption : text
+	date : text
+	image : file
+
+catatan : contoh format date "2022-12-30 14:00:12"
+
+```
+
+- update
+
+```
+POST : http://localhost:8000/api/information/update/{information id}
+auth : bearer token (admin)
+body : multipart
+	title : text
+	desctiption : text
+	date : text
+	image : file
+
+catatan : contoh format date "2022-12-30 14:00:12"
+
+```
+
+- delete
+
+```
+DELETE : http://localhost:8000/api/information/delete/{information id}
+auth : bearer token
+```
+
+
+- TAMBAHAN 
+
+apabila gambar tidak muncul, lakukan symlink terlebih dulu
+symlink folder *projek/storate/app/information* ke *projek/public*
+ 
+cara symlink di windows : 
+https://mastertipsorialindo.blogspot.com/2020/08/cara-membuat-symbolic-link-symlink-di.html
+
+cara symlink di linux :
+https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link
