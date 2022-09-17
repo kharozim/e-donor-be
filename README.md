@@ -296,7 +296,7 @@ POST : http://localhost:8000/api/information/add
 auth : bearer token (admin)
 body : multipart
 	title : text
-	desctiption : text
+	description : text
 	date : text
 	image : file
 
@@ -311,7 +311,7 @@ POST : http://localhost:8000/api/information/update/{information id}
 auth : bearer token (admin)
 body : multipart
 	title : text
-	desctiption : text
+	description : text
 	date : text
 	image : file
 
