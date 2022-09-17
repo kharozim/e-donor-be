@@ -74,7 +74,8 @@ class InformationController extends Controller
         if ($this->request->hasFile('image')) {
             $file = $this->request->file('image');
             $attachment = UploadUtil::upload('information', $file);
-            $request['image'] = url($attachment);
+            // $request['image'] = url($attachment);
+            $request['image'] = $attachment;
         }
 
         $result = Information::create($request);
@@ -102,7 +103,8 @@ class InformationController extends Controller
         if ($this->request->hasFile('image')) {
             $file = $this->request->file('image');
             $attachment = UploadUtil::upload('information', $file);
-            $request['image'] = url($attachment);
+            // $request['image'] = url($attachment);
+            $request['image'] = $attachment;
         }
 
         $info->update($request);
