@@ -327,10 +327,9 @@ auth : bearer token
 ```
 
 
-- TAMBAHAN 
+- GAMBAR TIDAK MUNCUL 
 
-apabila gambar tidak muncul, lakukan symlink terlebih dulu
-symlink folder **projek/storate/app/information** ke **projek/public**
+apabila gambar tidak muncul, lakukan symlink terlebih dulu folder **projek/storate/app/information** ke **projek/public**
  
 cara symlink di windows : 
 https://mastertipsorialindo.blogspot.com/2020/08/cara-membuat-symbolic-link-symlink-di.html
