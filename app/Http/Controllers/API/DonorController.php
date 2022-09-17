@@ -62,7 +62,7 @@ class DonorController extends Controller
             return ResponseUtil::error('Akses ditolak. Anda bukan admin', 400);
         }
 
-        $donor = Donor::where('user_id', '=', $user->id);
+        $donor = Donor::where('id', '=', $donorId)->first();
         if (!$donor) {
             return ResponseUtil::error('Donor tidak ditemukan', 400);
         }

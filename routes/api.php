@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\DonorController;
+use App\Http\Controllers\API\InformationController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\SupportController;
 use App\Http\Controllers\API\UserController;
@@ -68,7 +69,6 @@ Route::group(
         Route::post('/confirmation/{donorId}', [DonorController::class, 'confirmation']);
         Route::post('/add-request', [DonorController::class, 'addRequest']);
         Route::get('/detail/{donorId}', [DonorController::class, 'detail']);
-        // Route::put('/update/{donorId}', [DonorController::class, 'update']);
         Route::delete('/delete/{donorId}', [DonorController::class, 'delete']);
     }
 );
@@ -107,3 +107,21 @@ Route::group(
 );
 
 Route::post('/notification/test', [NotificationController::class, 'sendMessage']);
+
+
+Route::group(
+    [
+        'prefix' => 'information',
+        'as' => 'information.',
+        'middleware' => 'auth:sanctum'
+    ],
+    function () {
+        Route::get('/all', [InformationController::class, 'all'])->name('all information');
+        Route::get('/detail/{informationId}', [InformationController::class, 'detail'])->name('detail information');
+        Route::post('/add', [InformationController::class, 'add']);
+        Route::post('/update/{informationId}', [InformationController::class, 'update']);
+        Route::delete('/delete/{informationId}', [InformationController::class, 'delete']);
+    }
+);
+
+
