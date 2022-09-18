@@ -80,6 +80,14 @@ body :
 
 ```
 
+- Logout
+
+```
+POST : http://localhost:8000/api/auth/logout
+auth : bearer token
+
+```
+
 ### User
 
 - Profile
@@ -94,15 +102,14 @@ auth : bearer token
 ```
 PUT : http://localhost:8000/api/user/update/profile
 auth : bearer token
-body : 
-{
-	"name": "Budi edit ta",
-	"phone": "123",
-	"age": 160,
-	"blood_type": "O editaa",
-	"image": "https:\/\/thumbs.dreamstime.com\/b\/portrait-indian-people-street-puducherry-india-december-circa-years-man-serious-face-village-front-view-vibrant-174355138.jpg editaa",
-	"token_fcm": ""
-}
+body : multipart
+
+	name : text,
+	phone : text,
+	age : text,
+	blood_type : text,
+	image : file,
+
 ```
 
 - Semua User
