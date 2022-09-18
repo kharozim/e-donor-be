@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Donor;
 use App\Models\User;
 use App\Utils\ResponseUtil;
+use App\Utils\UploadUtil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +33,13 @@ class UserController extends Controller
 
         $request = $this->request;
         $request = $request->only(['name', 'phone', 'image', 'age', 'blood_type', 'token_fcm']);
+        
+        if ($this->request->hasFile('image')) {
+            $file = $this->request->file('image');
+            $attachment = UploadUtil::upload('profile', $file);
+            // $request['image'] = url($attachment);
+            $request['image'] = $attachment;
+        }
 
         $user->update($request);
         return ResponseUtil::success($user);
