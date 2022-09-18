@@ -337,7 +337,9 @@ auth : bearer token
 - GAMBAR TIDAK MUNCUL 
 
 apabila gambar tidak muncul, lakukan symlink terlebih dulu folder  :
+
 **{nama projek}/storate/app/information** -> **{nama projek}/public**
+
 **{nama projek}/storate/app/profile** -> **{nama projek}/public**
 
  
