@@ -338,9 +338,9 @@ auth : bearer token
 
 apabila gambar tidak muncul, lakukan symlink terlebih dulu folder  :
 
-**{nama projek}/storate/app/information** -> **{nama projek}/public**
+**{nama projek}/storage/app/information** -> **{nama projek}/public**
 
-**{nama projek}/storate/app/profile** -> **{nama projek}/public**
+**{nama projek}/storage/app/profile** -> **{nama projek}/public**
 
  
 cara symlink di windows : 
