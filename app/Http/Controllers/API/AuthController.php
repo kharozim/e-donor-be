@@ -178,4 +178,14 @@ class AuthController extends Controller
 
         return ResponseUtil::success('Berhasil reset password');
     }
+
+
+    public function logout()
+    {
+        $auth = Auth::user();
+        $user = User::find($auth->id);
+
+        $user->update(['token_fcm' => null]);
+        return ResponseUtil::success($user);
+    }
 }

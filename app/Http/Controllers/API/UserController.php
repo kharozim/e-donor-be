@@ -33,7 +33,7 @@ class UserController extends Controller
 
         $request = $this->request;
         $request = $request->only(['name', 'phone', 'image', 'age', 'blood_type', 'token_fcm']);
-        
+
         if ($this->request->hasFile('image')) {
             $file = $this->request->file('image');
             $attachment = UploadUtil::upload('profile', $file);

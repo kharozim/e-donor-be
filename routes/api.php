@@ -6,6 +6,7 @@ use App\Http\Controllers\API\InformationController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\SupportController;
 use App\Http\Controllers\API\UserController;
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,7 @@ Route::group(
         Route::post('/set-admin/{userId}', [AuthController::class, 'setAdmin']);
         Route::post('/request-reset', [AuthController::class, 'requestReset'])->name('forgot password');
         Route::post('/reset-password', [AuthController::class, 'reset'])->name('reset password');
+        Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
     }
 );
 
