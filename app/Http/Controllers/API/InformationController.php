@@ -120,7 +120,7 @@ class InformationController extends Controller
             return ResponseUtil::error('Akses ditolak. Anda bukan admin', 400);
         }
 
-        $info = Information::where('id', '=', $informationId);
+        $info = Information::where('id', '=', $informationId)->first();
 
         if (!$info) {
             return ResponseUtil::error('Data tidak ditemukan', 404);
