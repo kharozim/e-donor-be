@@ -25,12 +25,17 @@ class AuthController extends Controller
         $this->request->validate([
             'age' => ['integer'],
             'role_id' => ['integer'],
+            'nik' => ['integer'],
         ]);
 
         $request = $this->request;
 
         if (!$request['name']) {
             return ResponseUtil::error('Nama tidak boleh kosong', 400);
+        }
+
+        if (!$request['nik']) {
+            return ResponseUtil::error('NIK tidak boleh kosong', 400);
         }
 
         if (!$request['phone']) {
@@ -49,7 +54,7 @@ class AuthController extends Controller
             return ResponseUtil::error('Golongan darah tidak boleh kosong', 400);
         }
 
-        $request = $request->only(['name', 'phone', 'password', 'image', 'age', 'blood_type', 'token_fcm']);
+        $request = $request->only(['name', 'phone', 'password', 'image', 'age', 'blood_type', 'token_fcm', 'nik']);
 
 
 

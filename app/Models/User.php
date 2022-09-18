@@ -29,7 +29,8 @@ class User extends Authenticatable
         'is_pendonor',
         'image',
         'history_donor_count',
-        'token_fcm'
+        'token_fcm',
+        'nik'
     ];
 
     /**
@@ -51,6 +52,7 @@ class User extends Authenticatable
         'age' => 'integer',
         'role_id' => 'integer',
         'is_pendonor' => 'boolean',
-        'history_donor_count' => 'integer'
+        'history_donor_count' => 'integer',
+        'nik' => 'integer'
     ];
 }
