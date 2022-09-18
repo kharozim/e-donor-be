@@ -48,7 +48,7 @@ Route::group(
     ],
     function () {
         Route::get('/profile', [UserController::class, 'me']);
-        Route::put('/update/profile', [UserController::class, 'updateMe']);
+        Route::post('/update/profile', [UserController::class, 'updateMe']);
         Route::get('/all', [UserController::class, 'all']);
         Route::get('/detail/{userId}', [UserController::class, 'detail']);
         Route::put('/update/{userId}', [UserController::class, 'update']);
