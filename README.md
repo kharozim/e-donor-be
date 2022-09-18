@@ -336,7 +336,10 @@ auth : bearer token
 
 - GAMBAR TIDAK MUNCUL 
 
-apabila gambar tidak muncul, lakukan symlink terlebih dulu folder **projek/storate/app/information** ke **projek/public**
+apabila gambar tidak muncul, lakukan symlink terlebih dulu folder  :
+**{nama projek}/storate/app/information** -> **{nama projek}/public**
+**{nama projek}/storate/app/profile** -> **{nama projek}/public**
+
  
 cara symlink di windows : 
 https://mastertipsorialindo.blogspot.com/2020/08/cara-membuat-symbolic-link-symlink-di.html
