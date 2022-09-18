@@ -100,7 +100,7 @@ auth : bearer token
 - Update Profile
 
 ```
-PUT : http://localhost:8000/api/user/update/profile
+POST : http://localhost:8000/api/user/update/profile
 auth : bearer token
 body : multipart
 
