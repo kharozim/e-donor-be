@@ -30,7 +30,8 @@ class User extends Authenticatable
         'image',
         'history_donor_count',
         'token_fcm',
-        'nik'
+        'nik',
+        'reshus'
     ];
 
     /**

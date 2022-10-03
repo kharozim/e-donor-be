@@ -32,7 +32,7 @@ class UserController extends Controller
         $user = User::find($auth->id);
 
         $request = $this->request;
-        $request = $request->only(['name', 'phone', 'image', 'age', 'blood_type', 'token_fcm', 'nik']);
+        $request = $request->only(['name', 'phone', 'image', 'age', 'blood_type', 'token_fcm', 'nik', 'reshus']);
 
         if ($this->request->hasFile('image')) {
             $file = $this->request->file('image');
@@ -86,7 +86,7 @@ class UserController extends Controller
             return ResponseUtil::error('User tidak ditemukan', 400);
         }
         $request = $this->request;
-        $request = $request->only(['name', 'phone', 'image', 'is_pendonor', 'age', 'blood_type', 'token_fcm', 'nik']);
+        $request = $request->only(['name', 'phone', 'image', 'is_pendonor', 'age', 'blood_type', 'token_fcm', 'nik', 'reshus']);
 
         $user->update($request);
         return ResponseUtil::success($user);

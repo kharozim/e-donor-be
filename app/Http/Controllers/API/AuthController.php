@@ -54,9 +54,7 @@ class AuthController extends Controller
             return ResponseUtil::error('Golongan darah tidak boleh kosong', 400);
         }
 
-        $request = $request->only(['name', 'phone', 'password', 'image', 'age', 'blood_type', 'token_fcm', 'nik']);
-
-
+        $request = $request->only(['name', 'phone', 'password', 'image', 'age', 'blood_type', 'token_fcm', 'nik', 'reshus']);
 
         $user = User::where('phone', '=', trim($request['phone']))->first();
         if ($user) {
